@@ -1,7 +1,9 @@
+// Package Main implements OVID report crawler
 package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -16,9 +18,35 @@ import (
 )
 
 var (
-	chtMap = map[string]string{}
+	lastyear bool
+	chtMap   = map[string]string{}
+	m        = time.Now().Month()
 )
 
+func flags() {
+
+	flag.BoolVar(&lastyear, "lastyear", false, `Flag for Last Year, Default is: false`)
+
+}
+
+func init() {
+
+	flags()
+	flag.Parse()
+
+	log.SetOutput(os.Stdout)
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+
+	if os.Getenv("LASTYEAR") != "" {
+		lastyear = true
+	}
+
+	if lastyear {
+		fmt.Println("Running in LAST YEAR mode")
+	}
+}
+
+// Func main 可傳入網址做為參數
 func main() {
 	//argUrl := "https://ovidspstats.ovid.com/scripts/osp.wsc/osp_getReport2.p?Method=1510332.html&WhichReport=nfnjakmlRphijTrl"
 
@@ -137,7 +165,10 @@ func getUsage(para string) string {
 	content = strings.Replace(content, "&#39;", "'", -1)
 	content = strings.ToUpper(content)
 
-	m := time.Now().Month()
+	//m := time.Now().Month()
+	if lastyear {
+		m = 12
+	}
 	foundUsage := r.FindAllStringSubmatch(content, int(m))
 	strUsage := ""
 	for _, v := range foundUsage {
