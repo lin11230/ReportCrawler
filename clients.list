@@ -1,5 +1,5 @@
 {		
-        "Academia Sinica--Taiwan":                       "中央科學研究院",
+    "Academia Sinica--Taiwan":                       "中央科學研究院",
 		"Aletheia University":                           "真理大學",
 		"Asia University -- Taiwan":                     "亞洲大學",
 		"Chang Gung University":                         "長庚大學",
@@ -125,6 +125,7 @@
 		"LVM": "LVM",
 		"Ling Tung University":                         "嶺東科技大學",
 		"Chia Nan University of Pharmacy and Science":  "嘉南藥理大學",
-		"Tzu Chi University of Science and Technology": "慈濟科技大學"
+		"Tzu Chi University of Science and Technology": "慈濟科技大學",
+    "Yuanpei University of Medical Technology":     "元培醫事科技大學"
 }
 
