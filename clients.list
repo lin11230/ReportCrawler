@@ -30,6 +30,7 @@
 		"Hsing Wu University":                           "醒吾技術學院",
 		"Hsiuping Institute of Science and Technology":  "修平科技大學",
 		"Hsuan Chuang University":                       "玄奘大學",
+		"Hungkuo Delin University of Technology":        "宏國德霖科技大學",
 		"Hwa Hsia Institute of Technology":              "華夏技術學院",
 		"I-Shou University":                             "義守大學",
 		"Jinwen University of Science and Technology":   "景文科技大學",
@@ -102,6 +103,7 @@
 		"Taipei Chengshih University of Science & Tech": "臺北城市科技大學(北臺灣科學技術學院)",
 		"Taipei Medical University":                     "臺北醫學大學",
 		"Taiwan Academic E-books Consortium (TAEBC)":    "#N/A",
+		"Taiwan Academic E-Books & Database Consortium": "#N/A",
 		"Taiwan Shoufu University":                      "臺灣首府大學(原致遠管理學院)",
 		"Tajen University":                              "大仁科技大學",
 		"Takming University of Science and Technology":  "德明財經科技大學",
@@ -123,10 +125,10 @@
 		"Nanhua University":                             "南華大學",
 		"China University of Technology":                "南華大學",
 		"National Taipei College of Business":           "中國科技大學",
-		"LVM": "LVM",
-		"Ling Tung University":                         "嶺東科技大學",
-		"Chia Nan University of Pharmacy and Science":  "嘉南藥理大學",
-		"Tzu Chi University of Science and Technology": "慈濟科技大學",
-    "Yuanpei University of Medical Technology":     "元培醫事科技大學"
+		"LVM":                                           "LVM",
+		"Ling Tung University":                          "嶺東科技大學",
+		"Chia Nan University of Pharmacy and Science":   "嘉南藥理大學",
+		"Tzu Chi University of Science and Technology":  "慈濟科技大學",
+    "Yuanpei University of Medical Technology":      "元培醫事科技大學"
 }
 

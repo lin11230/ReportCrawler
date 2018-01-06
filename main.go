@@ -37,6 +37,8 @@ func init() {
 	log.SetOutput(os.Stdout)
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
+	// 指令範例 LASTYEAR=true ./ReportCrawler "網址"
+	// $ LASTYEAR=true ./ReportCrawler "https://ovidspstats.ovid.com/scripts/osp.wsc/osp_getReport2.p?Metho=2014801.html&WhichReport=leOaijbicaaMhjdb"
 	if os.Getenv("LASTYEAR") != "" {
 		lastyear = true
 	}
@@ -128,7 +130,9 @@ func getMemberList(strURL string) map[string]string {
 func getMemberUsageList(m map[string]string) map[string]string {
 	usageMap := make(map[string]string)
 	for k, v := range m {
+		fmt.Println("")
 		fmt.Println("processing [", k, "] data....")
+		//fmt.Println("data v is ", v)
 		usage := getUsage(v)
 		usageMap[k] = usage
 	}
@@ -137,7 +141,11 @@ func getMemberUsageList(m map[string]string) map[string]string {
 
 func getUsage(para string) string {
 	comboLink := "https://ovidspstats.ovid.com/scripts/osp_mail.wsc/osp_getReport2.p?" + para
-	r, _ := regexp.Compile("<TD ALIGN=\"RIGHT\" NOWRAP>(.*)</TD>")
+	//r, _ := regexp.Compile("<TD ALIGN=\"RIGHT\" NOWRAP>(.*)</TD>")
+	r, err := regexp.Compile("(?i)<TD ALIGN=\"RIGHT\" NOWRAP>(.*)</TD>")
+	if err != nil {
+		fmt.Println("getUsage regexp fail! ", err)
+	}
 
 	client := &http.Client{}
 
@@ -160,20 +168,26 @@ func getUsage(para string) string {
 		log.Fatal(err)
 	}
 	content := string(robots)
+	//fmt.Println("content is", content)
 	content = strings.Replace(content, "selected", "", -1)
 	content = strings.Replace(content, "&amp;", "&", -1)
 	content = strings.Replace(content, "&#39;", "'", -1)
 	content = strings.ToUpper(content)
 
 	//m := time.Now().Month()
+	var foundUsage [][]string
 	if lastyear {
-		m = 12
+		foundUsage = r.FindAllStringSubmatch(content, 13)
+	} else {
+		foundUsage = r.FindAllStringSubmatch(content, int(m))
 	}
-	foundUsage := r.FindAllStringSubmatch(content, int(m))
+
 	strUsage := ""
 	for _, v := range foundUsage {
+		//fmt.Println("value in cell", v[1])
 		strUsage += strings.Replace(v[1], "&NBSP;", "0", -1) + ","
 	}
+	//log.Println("strUsage is:", strUsage)
 
 	return strUsage
 
